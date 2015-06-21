@@ -18,6 +18,8 @@ define('EETI_SALT', 'changeme');
 
 define('EETI_AUTH_FILE', '../ups.txt');
 
+define('EETI_USER_PREFS', '../userprefs.txt');
+
 $doubledots = array_map('strrev', array(
 	'tar.gz',
 	'tar.bz',

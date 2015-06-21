@@ -1,4 +1,47 @@
-<?php include("login.php"); ?>
+<?php
+
+include("login.php");
+
+$prefsupdated=false;
+
+if( @isset($_POST['supd']) ){
+	$prefs = explode(file_get_contents(constant("EETI_USER_PREFS")), "\n");
+	unset($prefs[count($prefs)-1]);
+        $lineno = -1;
+	for( $i=0; $i<count($prefs); $i++ ){
+		$pex = $prefs[$i].explode(",");
+		if( $pex[0] == $_SESSION['user'] ){
+			$lineno = $i;
+		}
+	}
+
+	if( $lineno < 0 && count($prefs) != 0 ){
+		$lineno = count($prefs)-1;
+	}
+
+	if( $lineno < 0 && count($prefs) == 0 ){
+		$lineno=0;
+	}
+
+	$str = $_SESSION['user'] . ",";
+
+	// let's go through each thing now...
+
+	if( @isset($_POST['usrdeffn']) ) $str .= "1,";
+	else $str .= "0,";
+
+	// okiedone
+
+	$prefs[$lineno]=$str;
+	file_put_contents(constant("EETI_USER_PREFS"), implode($prefs, "\n"));
+
+	$prefsupdated=true;
+
+}
+
+include("includes/getsettings.php");
+
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -18,13 +61,19 @@
 						<li><a href="#" onClick="loadTab('welcome');">Welcome</a></li>
 						<li><a href="#" onClick="loadTab('rules');">Rules</a></li>
 						<li><a href="#" onClick="loadTab('uploads');">Uploads</a></li>
-						<li><a href="#" onClick="loadTab('config');">Config</a></li>
+						<li><a href="#" onClick="loadTab('config');">Settings</a></li>
 					</ul>
 				</nav>
 				<!-- welcome tab -->
 				<div id="welcome" class="tab">
 					<p class="lead">Welcome to eeti.me!</p>
-					I'll eventually put some updates here or something but there's nothing here yet. Pomf on~
+					<div style="text-align: left;">
+						<h2>0.1.1 - 21 June 2015</h2>
+						<ul>
+							<li>Added <a href="#" onClick="loadTab('config');">a settings page</a>.</li>
+							<li>Added the ability to name uploaded files after their originals.</li>
+						</ul>
+					</div>
 				</div>
 
 				<!-- uploads tab -->
@@ -45,6 +94,8 @@
 					<input type="file" id="upload-input" name="files[]" multiple="multiple" data-max-size="10MiB">
 						<ul id="upload-filelist"></ul>
 				</div>
+
+				<!-- rules tab -->
 				<div class="tab" id="rules" style="display: none;">
 					<p class="lead">
 						<b>Rules of eeti.me</b><br>
@@ -65,10 +116,14 @@
 						</li>
 					</ol>
 				</div>
+
+				<!-- prefs tab -->
 				<div id="config" class="tab" style="display: none;">
-					<p class="lead">User Configuration Panel</p>
-					<form action="">
-  						<input type="checkbox" name="usrdeffn" value="usrdeffn"> Upload link uses filename<br>
+					<?php if( $prefsupdated === true ){ ?><div class="alert alert-info">Settings updated.</div><?php } ?>
+					<p class="lead">eeti.me Settings</p>
+					<form action="" method="post">
+						<input type="hidden" name="supd" value="true"></input><br>
+  						<input type="checkbox" name="usrdeffn" value="yes" <?php if($settings['fn']){ ?> checked="checked" <?php } ?>> Upload link uses filename<br>
   						<input type="submit" value="Update">
 					</form>
 				</div>
@@ -86,6 +141,7 @@
 			<script src="js/cheesesteak.js"></script>
 			<script src="js/cabinet.js"></script>
 			<script src="eetime.js"></script>
+			<?php if(@isset($_POST['supd'])) { ?><script type="text/javascript">loadTab('config');</script><?php } ?>
 		</div>
 	</body>
 </html>

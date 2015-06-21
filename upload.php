@@ -1,5 +1,6 @@
 <?php
 include("login.php");
+require_once("includes/getsettings.php");
 
 // Check if we can compress our output; if we can, we'll do it
 if (ini_get('zlib.output_compression') !== 'Off'
@@ -21,6 +22,7 @@ include_once 'includes/database.inc.php';
  * @return string
  */
 function generate_name ($file) {
+	global $settings;
 	global $db;
 	global $doubledots;
 
@@ -34,6 +36,16 @@ function generate_name ($file) {
 		if (stripos($revname, $ddot) === 0) {
 			$ext = strrev($ddot);
 		}
+	}
+
+	if( $settings['fn'] === true ){
+		$f = $db->prepare('SELECT COUNT(name) FROM pomf WHERE name = (:name)');
+		$f->bindValue(":name", $file->name);
+		$res = $f->fetchColumn();
+		if( $res > 0 ){
+			throw new Exception("File name already exists, rename your file or disable naming after the uploaded file name", 400);
+		}
+		else return $file->name;
 	}
 
 

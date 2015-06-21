@@ -18,6 +18,7 @@
 						<li><a href="#" onClick="loadTab('welcome');">Welcome</a></li>
 						<li><a href="#" onClick="loadTab('rules');">Rules</a></li>
 						<li><a href="#" onClick="loadTab('uploads');">Uploads</a></li>
+						<li><a href="#" onClick="loadTab('config');">Config</a></li>
 					</ul>
 				</nav>
 				<!-- welcome tab -->
@@ -36,7 +37,7 @@
 					</noscript>
 					<p id="no-file-api" class="alert alert-error">
 						<strong>Your browser is old.</strong>
-						Install the latest <a href="http://firefox.com/">Firefox</a> or <a href="http://chrome.google.com/">Botnet</a> and come back &lt;3
+						Install the latest <a href="http://firefox.com/">Firefox</a> or <a href="http://chrome.google.com/">Chrome</a> and come back &lt;3
 					</p>
 					<a href="javascript:;" id="upload-btn" class="btn">
 						Select <span>or drop</span> file(s) here~
@@ -63,6 +64,13 @@
 							<b>Don't share your login details.</b> Pretty self-explanatory. You are resposible for what happens under your account.
 						</li>
 					</ol>
+				</div>
+				<div id="config" class="tab" style="display: none;">
+					<p class="lead">User Configuration Panel</p>
+					<form action="">
+  						<input type="checkbox" name="usrdeffn" value="usrdeffn"> Upload link uses filename<br>
+  						<input type="submit" value="Update">
+					</form>
 				</div>
 			</div>
 			<nav>

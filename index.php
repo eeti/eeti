@@ -29,7 +29,7 @@
 				<!-- uploads tab -->
 				<div id="uploads" class="tab" style="display: none;">
 					<p class="lead">
-						You can upload files up to 50MB here as long as they follow our <a href="#" onClick="loadTab('rules');">simple rules</a>.
+						You can upload files up to 10MB here as long as they follow our <a href="#" onClick="loadTab('rules');">simple rules</a>.
 					</p>
 					<noscript>
 						<p class="alert alert-error"><strong>Enable JavaScript</strong>, it's not gonna hurt you</p>
@@ -41,7 +41,7 @@
 					<a href="javascript:;" id="upload-btn" class="btn">
 						Select <span>or drop</span> file(s) here~
 					</a>
-					<input type="file" id="upload-input" name="files[]" multiple="multiple" data-max-size="50MiB">
+					<input type="file" id="upload-input" name="files[]" multiple="multiple" data-max-size="10MiB">
 						<ul id="upload-filelist"></ul>
 				</div>
 				<div class="tab" id="rules" style="display: none;">
@@ -54,7 +54,7 @@
 							<b>Don't be dumb.</b> You were invited here for a reason and you are seen as mentally competent. eeti.me is a privilege, not a right.
 						</li>
 						<li>
-							<b>Don't be a prick.</b> Don't constantly upload 50MB files, don't DDoS the site, don't hurt other people, don't distribute viruses. We're <i>very</i> fair.
+							<b>Don't be a prick.</b> Don't DDoS the site, don't hurt other people, don't distribute viruses. We're <i>very</i> fair.
 						</li>
 						<li>
 							<b>Don't do anything that will get me sued or blacklisted.</b> Seriously. Don't. I will find you.

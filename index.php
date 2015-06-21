@@ -67,6 +67,7 @@ include("includes/getsettings.php");
 				<!-- welcome tab -->
 				<div id="welcome" class="tab">
 					<p class="lead">Welcome to eeti.me!</p>
+					<p class="lead">Read our <a href="#" onClick="loadTab('rules');">rules</a> (please)</p>
 					<div style="text-align: left;">
 						<h2>0.1.1 - 21 June 2015</h2>
 						<ul>
@@ -106,7 +107,7 @@ include("includes/getsettings.php");
 							<b>Don't be dumb.</b> You were invited here for a reason and you are seen as mentally competent. eeti.me is a privilege, not a right.
 						</li>
 						<li>
-							<b>Don't be a prick.</b> Don't DDoS the site, don't hurt other people, don't distribute viruses. We're <i>very</i> fair.
+							<b>Don't be a prick.</b> Don't constantly upload 10MB files, don't DDoS the site, don't hurt other people, and don't distribute viruses. We're <i>very</i> fair.
 						</li>
 						<li>
 							<b>Don't do anything that will get me sued or blacklisted.</b> Seriously. Don't. I will find you.

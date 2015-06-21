@@ -18,6 +18,7 @@
 						<li><a href="#" onClick="loadTab('welcome');">Welcome</a></li>
 						<li><a href="#" onClick="loadTab('rules');">Rules</a></li>
 						<li><a href="#" onClick="loadTab('uploads');">Uploads</a></li>
+						<li><a href="#" onClick="loadTab('config');">Config</a></li>
 					</ul>
 				</nav>
 				<!-- welcome tab -->
@@ -64,7 +65,7 @@
 						</li>
 					</ol>
 				</div>
-				<div id="configuration" class="tab" style="display: none;">
+				<div id="config" class="tab" style="display: none;">
 					<p class="lead">User Configuration Panel</p>
 					<form action="">
   						<input type="checkbox" name="usrdeffn" value="usrdeffn"> Upload link uses filename<br>

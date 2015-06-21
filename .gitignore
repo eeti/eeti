@@ -1,0 +1,2 @@
+# don't include database stuff
+includes/settings.inc.php

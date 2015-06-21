@@ -74,7 +74,7 @@
 			</nav>
 			<!-- come on chrome >.< -->
 			<script src="js/zepto.js"></script>
-			<script src="js/pomf.js"></script>
+			<script src="js/pomf.js.php"></script>
 			<script src="js/cheesesteak.js"></script>
 			<script src="js/cabinet.js"></script>
 			<script src="eetime.js"></script>

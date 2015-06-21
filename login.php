@@ -55,6 +55,7 @@
 
 		<nav><ul><li>Service run by <a href="http://sw.eeti.me/">Sweeti Alexandra</a></li><li><a href="https://github.com/nokonoko/Pomf">Based on Pomf</a></li></ul></nav>
 	</body>
+	<script src="/eetime.js"></script>
 </html>
 <?php
 		die();

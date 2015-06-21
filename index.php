@@ -64,7 +64,7 @@
 						</li>
 					</ol>
 				</div>
-				<div id="configuration" class="tab">
+				<div id="configuration" class="tab" style="display: none;">
 					<p class="lead">User Configuration Panel</p>
 					<form action="">
   						<input type="checkbox" name="usrdeffn" value="usrdeffn"> Upload link uses filename<br>

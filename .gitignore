@@ -1,2 +1,3 @@
 # don't include database stuff
 includes/settings.inc.php
+meetime/config.php

@@ -10,6 +10,8 @@ $EDITOR includes/settings.php
 echo "myusername,$(`php mkpasswd.php my secret password`)" > wherever-you-specified.txt
 ```
 
+TODO: add instructions about url shortener
+
 ## PRs
 
 pls

@@ -5,22 +5,23 @@ include("login.php");
 $prefsupdated=false;
 
 if( @isset($_POST['supd']) ){
-	$prefs = explode(file_get_contents(constant("EETI_USER_PREFS")), "\n");
-	unset($prefs[count($prefs)-1]);
+	$prefs=file_get_contents(constant("EETI_USER_PREFS"));
+	if( $prefs != "" ) $prefs = explode("\n", $prefs);
+	else $prefs = array();
+	//unset($prefs[count($prefs)-1]);
         $lineno = -1;
-	for( $i=0; $i<count($prefs); $i++ ){
-		$pex = $prefs[$i].explode(",");
+
+	for($i=0; $i<count($prefs); $i++){
+		if( $prefs[$i] == "" ) continue;
+		$pex = explode(",", $prefs[$i]);
 		if( $pex[0] == $_SESSION['user'] ){
 			$lineno = $i;
 		}
 	}
 
-	if( $lineno < 0 && count($prefs) != 0 ){
-		$lineno = count($prefs)-1;
-	}
-
-	if( $lineno < 0 && count($prefs) == 0 ){
-		$lineno=0;
+	if( $lineno >= 0 ){
+		unset($prefs[$lineno]);
+		array_values($prefs);
 	}
 
 	$str = $_SESSION['user'] . ",";
@@ -30,9 +31,15 @@ if( @isset($_POST['supd']) ){
 	if( @isset($_POST['usrdeffn']) ) $str .= "1,";
 	else $str .= "0,";
 
+	foreach($prefs as $key => $value){
+		if( $prefs[$key] == "" ) unset($prefs[$key]);
+	}
+
+	array_values($prefs);
+
 	// okiedone
 
-	$prefs[$lineno]=$str;
+	array_push($prefs, $str);
 	file_put_contents(constant("EETI_USER_PREFS"), implode($prefs, "\n"));
 
 	$prefsupdated=true;
@@ -61,6 +68,7 @@ include("includes/getsettings.php");
 						<li><a href="#" onClick="loadTab('welcome');">Welcome</a></li>
 						<li><a href="#" onClick="loadTab('rules');">Rules</a></li>
 						<li><a href="#" onClick="loadTab('uploads');">Uploads</a></li>
+						<li><a href="#" onClick="loadTab('shorten');">Shorten</a></li>
 						<li><a href="#" onClick="loadTab('config');">Settings</a></li>
 					</ul>
 				</nav>
@@ -68,6 +76,10 @@ include("includes/getsettings.php");
 				<div id="welcome" class="tab">
 					<p class="lead">Welcome to eeti.me!</p>
 					<div style="text-align: left;">
+						<h2>0.1.2 - 21 June 2015</h2>
+						<ul>
+							<li><a href="#" onClick="loadTab('shorten');">Added URL shortening.</a></li>
+						</ul>
 						<h2>0.1.1 - 21 June 2015</h2>
 						<ul>
 							<li>Added <a href="#" onClick="loadTab('config');">a settings page</a>.</li>
@@ -117,6 +129,14 @@ include("includes/getsettings.php");
 					</ol>
 				</div>
 
+				<!-- url shortening tab -->
+				<div id="shorten" class="tab" style="display: none;">
+					<p class="lead">Shorten a URL...</p>
+					<div id="error"></div>
+					<input type="text" id="url"></input>
+					<input type="button" value="Shorten" onclick="shortenURL();"></input>
+				</div>
+
 				<!-- prefs tab -->
 				<div id="config" class="tab" style="display: none;">
 					<?php if( $prefsupdated === true ){ ?><div class="alert alert-info">Settings updated.</div><?php } ?>
@@ -136,6 +156,7 @@ include("includes/getsettings.php");
 				</ul>
 			</nav>
 			<!-- come on chrome >.< -->
+			<script src="js/jquery.min.js"></script>
 			<script src="js/zepto.js"></script>
 			<script src="js/pomf.js.php"></script>
 			<script src="js/cheesesteak.js"></script>

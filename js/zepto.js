@@ -1,5 +1,6 @@
 /* Zepto v1.0-7-g579f376 - zepto event - zeptojs.com/license */
 
+delete $;
 
 var Zepto = (function() {
   var undefined, key, $, classList, emptyArray = [], slice = emptyArray.slice, filter = emptyArray.filter,

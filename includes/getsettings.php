@@ -14,7 +14,7 @@
 	}
 
 	// use defaults if none exist
-	if( ! $settings['set'] ){
+	if( ! @isset($settings['set']) ){
 		$settings['set'] = true;
 		$settings['fn'] = false;
 	}

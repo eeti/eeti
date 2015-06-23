@@ -24,3 +24,18 @@ function shortenURL(){
 		document.getElementById("error").innerHTML="<font color='red'>Error: " + e + "</font>";
 	});
 }
+
+function paste(){
+	jQuery.ajax({
+		cache: false,
+		url: "/paste.php",
+		type: "POST",
+		data: {
+			paste: jQuery("#pastecontents").val()
+		}
+	}).done(function(f){
+		document.getElementById("error_p").innerHTML="<font color='blue'>Your paste is available at <a href='" + f + "'>" + f + "</a></font>";
+	}).fail(function(e){
+		document.getElementById("error_p").innerHTML="<font color='red'>Error: " + e + "</font>";
+	});
+}

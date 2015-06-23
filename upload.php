@@ -1,5 +1,5 @@
 <?php
-include("login.php");
+require("login.php");
 require_once("includes/getsettings.php");
 
 // Check if we can compress our output; if we can, we'll do it

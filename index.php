@@ -1,6 +1,6 @@
 <?php
 
-include("login.php");
+require("login.php");
 
 $prefsupdated=false;
 
@@ -69,7 +69,8 @@ include("includes/getsettings.php");
 						<li><a href="#" onClick="loadTab('rules');">Rules</a></li>
 						<li><a href="#" onClick="loadTab('uploads');">Uploads</a></li>
 						<li><a href="#" onClick="loadTab('shorten');">Shorten</a></li>
-						<li><a href="#" onClick="loadTab('config');">Settings</a></li>
+						<li><a href="#" onClick="loadTab('paste');">Paste</a></li>
+						<li><a href="#" onclick="loadTab('config');">Settings</a></li>
 					</ul>
 				</nav>
 				<!-- welcome tab -->
@@ -136,6 +137,14 @@ include("includes/getsettings.php");
 					<div id="error"></div>
 					<input type="text" id="url"></input>
 					<input type="button" value="Shorten" onclick="shortenURL();"></input>
+				</div>
+
+				<!-- paste tab -->
+				<div id="paste" class="tab" style="display: none;">
+					<p class="lead">Create a paste...</p>
+					<div id="error_p"></div>
+					<textarea id="pastecontents" style="height: 500px; width: 100%;"></textarea><br>
+					<input type="button" value="Paste" onClick="paste();"></input>
 				</div>
 
 				<!-- prefs tab -->

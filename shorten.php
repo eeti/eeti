@@ -5,7 +5,7 @@
  * Contact the author at http://briancray.com/
  */
 
-include("login.php");
+require("login.php");
  
 ini_set('display_errors', 0);
 

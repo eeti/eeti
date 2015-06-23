@@ -11,6 +11,7 @@ function requestInvite(){
 }
 
 function shortenURL(){
+	document.getElementById("url").disabled = true;
 	jQuery.ajax({
 		cache: false,
 		url: "/shorten.php",
@@ -22,10 +23,14 @@ function shortenURL(){
 		document.getElementById("error").innerHTML="<font color='blue'>Your shortened URL is <a href='" + f + "'>" + f + "</a></font>";
 	}).fail(function(e){
 		document.getElementById("error").innerHTML="<font color='red'>Error: " + e + "</font>";
+	}).always(function(e){
+		document.getElementById("url").disabled = false;
+		document.getElementById("url").value = "";
 	});
 }
 
 function paste(){
+	document.getElementById("pastecontents").disabled = true;
 	jQuery.ajax({
 		cache: false,
 		url: "/paste.php",
@@ -37,5 +42,8 @@ function paste(){
 		document.getElementById("error_p").innerHTML="<font color='blue'>Your paste is available at <a href='" + f + "'>" + f + "</a></font>";
 	}).fail(function(e){
 		document.getElementById("error_p").innerHTML="<font color='red'>Error: " + e + "</font>";
+	}).always(function(e){
+		document.getElementById("pastecontents").disabled = false;
+		document.getElementById("pastecontents").value = "";
 	});
 }

@@ -36,12 +36,12 @@
 	}
 
 	try {
-		if( ! @isset($_POST['paste']) ) throw new Exception("No paste given");
+		if( ! @isset($_POST['paste']) || $_POST['paste'] == "" ) throw new Exception("No paste given", 400);
 		$name=generate_name();
 		file_put_contents(POMF_FILES_ROOT . $name, $_POST['paste']);
 		die(POMF_URL . $name);
 	} catch(Exception $e){
-		header("500 Internal Server Error");
-		die("Could not save paste for some reason. Try again later?");
+		http_response_code($e->getCode());
+		die("Could not save paste: " . $e->getMessage());
 	}
 ?>

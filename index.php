@@ -75,9 +75,18 @@ include("includes/getsettings.php");
 				</nav>
 				<!-- welcome tab -->
 				<div id="welcome" class="tab">
-					<p class="lead">Welcome to eeti.me!</p>
+					<p class="lead"><b>Welcome to eeti.me!</b></p>
 					<p class="lead">Read our <a href="#" onClick="loadTab('rules');">rules</a> (please)</p>
 					<div style="text-align: left;">
+						<h2>0.1.4 - 24 June 2015</h2>
+						<ul>
+							<li>Small bug fixes and improvements</li>
+						</ul>
+						<h2>0.1.3 - 23 June 2015</h2>
+						<ul>
+							<li>Small bug fixes and improvements</li>
+							<li><a href="#" onClick="loadTab('paste');">Added pastebin.</a></li>
+						</ul>
 						<h2>0.1.2 - 21 June 2015</h2>
 						<ul>
 							<li><a href="#" onClick="loadTab('shorten');">Added URL shortening.</a></li>

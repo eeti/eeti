@@ -41,7 +41,7 @@ function paste(){
 	}).done(function(f){
 		document.getElementById("error_p").innerHTML="<font color='blue'>Your paste is available at <a href='" + f + "'>" + f + "</a></font>";
 	}).fail(function(e){
-		document.getElementById("error_p").innerHTML="<font color='red'>Error: " + e + "</font>";
+		document.getElementById("error_p").innerHTML="<font color='red'>Error: " + e.responseText + "</font>";
 	}).always(function(e){
 		document.getElementById("pastecontents").disabled = false;
 		document.getElementById("pastecontents").value = "";

@@ -1,5 +1,7 @@
 # eeti.me
 
+Restricted file-hosting and pastebin service based on Pomf
+
 ## Install
 
 (We're going to safely assume that you know how to set up PHP, MySQL, the web server of your choice, and git,
@@ -17,6 +19,13 @@ mysql -u some-user -p my-eeti-database < meetime/shortenedurls.sql
 echo "myusername,$(`php mkpasswd.php my secret password`)" > wherever-you-specified-in-settings.php.txt
 ```
 
-## PRs
+## Upgrading
+
+```
+cd wherever-you-installed-eeti
+git pull
+```
+
+## Pull requests
 
 pls

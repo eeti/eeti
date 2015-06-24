@@ -1,6 +1,6 @@
 # eeti.me
 
-Restricted file-hosting and pastebin service based on Pomf
+Restricted file-hosting, pastebin, and URL shortening service based on Pomf
 
 ## Install
 

@@ -67,9 +67,9 @@ include("includes/getsettings.php");
 					<ul class="lead">
 						<li><a href="#" onClick="loadTab('welcome');">Welcome</a></li>
 						<li><a href="#" onClick="loadTab('rules');">Rules</a></li>
-						<li><a href="#" onClick="loadTab('uploads');">Uploads</a></li>
-						<li><a href="#" onClick="loadTab('shorten');">Shorten</a></li>
-						<li><a href="#" onClick="loadTab('paste');">Paste</a></li>
+						<?php if(EETI_ENABLE_UPLOADS){ ?> <li><a href="#" onClick="loadTab('uploads');">Uploads</a></li><?php } ?>
+						<?php if(EETI_ENABLE_URLS){ ?><li><a href="#" onClick="loadTab('shorten');">Shorten</a></li><?php } ?>
+						<?php if(EETI_ENABLE_PASTEBIN){ ?><li><a href="#" onClick="loadTab('paste');">Paste</a></li><?php } ?>
 						<li><a href="#" onclick="loadTab('config');">Settings</a></li>
 					</ul>
 				</nav>
@@ -100,6 +100,7 @@ include("includes/getsettings.php");
 				</div>
 
 				<!-- uploads tab -->
+				<?php if(EETI_ENABLE_UPLOADS){ ?>
 				<div id="uploads" class="tab" style="display: none;">
 					<p class="lead">
 						You can upload files up to 10MB here as long as they follow our <a href="#" onClick="loadTab('rules');">simple rules</a>.
@@ -115,8 +116,9 @@ include("includes/getsettings.php");
 						Select <span>or drop</span> file(s) here~
 					</a>
 					<input type="file" id="upload-input" name="files[]" multiple="multiple" data-max-size="10MiB">
-						<ul id="upload-filelist"></ul>
+					<ul id="upload-filelist"></ul>
 				</div>
+				<?php } ?>
 
 				<!-- rules tab -->
 				<div class="tab" id="rules" style="display: none;">
@@ -140,6 +142,7 @@ include("includes/getsettings.php");
 					</ol>
 				</div>
 
+				<?php if(EETI_ENABLE_URLS){ ?>
 				<!-- url shortening tab -->
 				<div id="shorten" class="tab" style="display: none;">
 					<p class="lead">Shorten a URL...</p>
@@ -147,7 +150,9 @@ include("includes/getsettings.php");
 					<input type="text" id="url"></input>
 					<input type="button" value="Shorten" onclick="shortenURL();"></input>
 				</div>
+				<?php } ?>
 
+				<?php if(EETI_ENABLE_PASTEBIN){ ?>
 				<!-- paste tab -->
 				<div id="paste" class="tab" style="display: none;">
 					<p class="lead">Create a paste...</p>
@@ -155,6 +160,7 @@ include("includes/getsettings.php");
 					<textarea id="pastecontents" style="height: 500px; width: 100%;"></textarea><br>
 					<input type="button" value="Paste" onClick="paste();"></input>
 				</div>
+				<?php } ?>
 
 				<!-- prefs tab -->
 				<div id="config" class="tab" style="display: none;">
@@ -166,6 +172,15 @@ include("includes/getsettings.php");
   						<input type="submit" value="Update">
 					</form>
 				</div>
+
+				<!-- upload from clipboard -->
+				<div id="uploads-clipboard" class="tab" style="display: none;">
+					<p id="uploading" style="display: none;">
+						<b>Image pasted from clipboard:</b><br>
+						<img id="uplimg" height=200 style="align: center;"></img>
+						<p id="clstatus">Uploading...</p>
+					</p>
+				</div>
 			</div>
 			<nav>
 				<ul>
@@ -176,11 +191,13 @@ include("includes/getsettings.php");
 			</nav>
 			<!-- come on chrome >.< -->
 			<script src="js/jquery.min.js"></script>
+			<script src="js/jquery.paste_image_reader.js"></script>
+			<script src="js/pizza.js"></script>
 			<script src="js/zepto.js"></script>
 			<script src="js/pomf.js.php"></script>
 			<script src="js/cheesesteak.js"></script>
 			<script src="js/cabinet.js"></script>
-			<script src="eetime.js"></script>
+			<script src="js/eetime.js"></script>
 			<?php if(@isset($_POST['supd'])) { ?><script type="text/javascript">loadTab('config');</script><?php } ?>
 		</div>
 	</body>

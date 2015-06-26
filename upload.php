@@ -2,13 +2,14 @@
 require("login.php");
 require_once("includes/getsettings.php");
 
+if( ! EETI_ENABLE_UPLOADS ) die();
+
 // Check if we can compress our output; if we can, we'll do it
 if (ini_get('zlib.output_compression') !== 'Off'
 	&& isset($_SERVER["HTTP_ACCEPT_ENCODING"])
 	&& strpos($_SERVER["HTTP_ACCEPT_ENCODING"], 'gzip') !== false)
 	    ob_start("ob_gzhandler");
 
-session_start();
 include_once 'classes/Response.class.php';
 include_once 'classes/UploadException.class.php';
 include_once 'classes/UploadedFile.class.php';

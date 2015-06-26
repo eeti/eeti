@@ -118,6 +118,7 @@ $(function () {
 				case 200:
 					var res = JSON.parse(res)
 					if (!res.success) {
+						console.log(res);
 						uploadFiles.addClass('error')
 						$('.file-name', totalRow).text('Something went wrong; try again later.')
 						break

@@ -6,6 +6,8 @@
  */
 
 require("login.php");
+
+if( ! EETI_ENABLE_URLS ) die();
  
 ini_set('display_errors', 0);
 

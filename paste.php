@@ -1,6 +1,7 @@
 <?php
 	require("login.php");
 	require("includes/database.inc.php");
+	if( ! EETI_ENABLE_PASTEBIN ) die();
 
 	function generate_name() {
 		global $settings;
@@ -38,8 +39,25 @@
 	try {
 		if( ! @isset($_POST['paste']) || $_POST['paste'] == "" ) throw new Exception("No paste given", 400);
 		$name=generate_name();
+
+		// put the file in the database (rookie mistake)
+		$q = $db->prepare('INSERT INTO files (hash, originalname, filename, size, date, ' .
+			'expire, delid) VALUES (:hash, :orig, :name, :size, :date, ' .
+			':exp, :del)');
+
+		$q->bindValue(':hash', sha1($_POST['paste']),       PDO::PARAM_STR);
+		$q->bindValue(':orig', strip_tags("paste" . time() . + ".txt"), PDO::PARAM_STR);
+		$q->bindValue(':name', $name,                PDO::PARAM_STR);
+		$q->bindValue(':size', strlen($_POST['paste']),             PDO::PARAM_INT);
+		$q->bindValue(':date', date('Y-m-d'),           PDO::PARAM_STR);
+		$q->bindValue(':exp',  null,                    PDO::PARAM_STR);
+		$q->bindValue(':del',  sha1($_POST['paste']),   PDO::PARAM_STR);
+		$q->execute();
+
+		// we should be good to go now
 		file_put_contents(POMF_FILES_ROOT . $name, $_POST['paste']);
 		die(POMF_URL . $name);
+
 	} catch(Exception $e){
 		http_response_code($e->getCode());
 		die("Could not save paste: " . $e->getMessage());

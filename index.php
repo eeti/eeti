@@ -78,6 +78,11 @@ include("includes/getsettings.php");
 					<p class="lead"><b>Welcome to eeti.me!</b></p>
 					<p class="lead">Read our <a href="#" onClick="loadTab('rules');">rules</a> (please)</p>
 					<div style="text-align: left;">
+						<h2>0.1.5 - 26 June 2015</h2>
+						<ul>
+							<li>Bug fixes and improvements</li>
+							<li>Image pasting from clipboard. Try it: right click and copy this image <img src="http://eeti.me/favicon.ico" height=16></img> and then Ctrl+V to upload!</li>
+						</ul>
 						<h2>0.1.4 - 24 June 2015</h2>
 						<ul>
 							<li>Small bug fixes and improvements</li>

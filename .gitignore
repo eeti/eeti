@@ -1,3 +1,6 @@
 # don't include database stuff
-includes/settings.inc.php
-meetime/config.php
+www/includes/settings.inc.php
+www/meetime/config.php
+
+# don't include any generated keys
+key/*

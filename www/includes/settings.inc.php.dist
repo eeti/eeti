@@ -28,6 +28,9 @@ define('EETI_ENABLE_UPLOADS', true);
 // Enable URL shortening
 define('EETI_ENABLE_URLS', true);
 
+// Enable the API
+define('EETI_ENABLE_API', false);
+
 $doubledots = array_map('strrev', array(
 	'tar.gz',
 	'tar.bz',

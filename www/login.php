@@ -1,28 +1,16 @@
 <?php
 
-	include("includes/settings.inc.php");
-
-//	echo EETI_AUTH_FILE;
+	require("includes/settings.inc.php");
+	require("includes/authenticate.php");
 
 	session_start();
 
 	if( @isset($_POST['user']) && @isset($_POST['pass']) ){
-		$ups=file_get_contents(constant("EETI_AUTH_FILE"));
-		$ups=explode("\n", $ups);
-		unset($ups[count($ups)-1]);
-
-		for( $i=0; $i<count($ups); $i++ ){
-			$tmp=explode(",", $ups[$i]);
-			if( $tmp[0] == $_POST['user'] && hash('sha256', EETI_SALT . $_POST['pass']) == $tmp[1] ){
-				$_SESSION['user']=$_POST['user'];
-				$_SESSION['pass']=$_POST['pass'];
-			}
+		$r=authenticate($_POST['user'], $_POST['pass']);
+		if( $r['success'] ){
+			$_SESSION['user']=$r['user'];
+			$_SESSION['pass']=$r['pass'];
 		}
-
-		if( ! @isset($_SESSION['user']) ){
-			$error="Invalid username/password.";
-		}
-
 	}
 
 	if( ( ! @isset($_SESSION['user']) || ! @isset($_SESSION['pass']) ) ){
